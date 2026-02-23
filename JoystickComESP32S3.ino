@@ -1,7 +1,7 @@
 #include "USB.h"
-#include "USBHIDGamepad.h"
+#include "JoystickFoda.h"
 
-USBHIDGamepad Gamepad;
+JoystickFoda joystickFoda;
 const int PinoPotenciometroVolante = 14;
 
 void setup() {
@@ -9,7 +9,7 @@ void setup() {
   analogSetAttenuation(ADC_11db);
 
   USB.begin();
-  Gamepad.begin();
+  joystickFoda.begin();
 }
 
 void loop() {
@@ -17,7 +17,7 @@ void loop() {
 
   int8_t ValorDoVolanteMapeado = map(valorAnalogicoDoVolante, 0, 4095, -127, 127);
 
-  Gamepad.send(
+  joystickFoda.send(
     ValorDoVolanteMapeado,  // eixo X (volante)
     0,                      // Y
     0,                      // Z

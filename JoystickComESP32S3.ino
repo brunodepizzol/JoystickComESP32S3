@@ -15,7 +15,7 @@ void setup() {
 void loop() {
   int valorAnalogicoDoVolante = analogRead(PinoPotenciometroVolante);
 
-  int8_t ValorDoVolanteMapeado = map(valorAnalogicoDoVolante, 0, 4095, -127, 127);
+  int16_t ValorDoVolanteMapeado = (int16_t)map(valorAnalogicoDoVolante, 0, 4095, -32767, 32767);
 
   joystickFoda.send(
     ValorDoVolanteMapeado,  // eixo X (volante)
@@ -24,7 +24,7 @@ void loop() {
     0,                      // Rz
     0,                      // Rx
     0,                      // Ry
-    0,                      // hat (centrado)
+    8,                      // hat (centrado)
     0                       // botões
   );
 }
